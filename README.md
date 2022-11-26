@@ -1,4 +1,8 @@
-# default
+# Open WRA Vue 3
+
+This is the implementation of the Wild Rift Analytics Open Source in Vue 3.
+
+The idea behind this is update the entire estructures to a new version of the software
 
 ## Project setup
 
