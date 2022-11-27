@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <!-- {{map}} -->
+    {{map}}
     <v-row>
       <v-col cols="6">
         <v-card class="bg-blue-darken-4" variant="outlined">

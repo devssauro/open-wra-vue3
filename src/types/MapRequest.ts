@@ -1,6 +1,7 @@
-import {SideTeams} from './mapParts/Sides'
-import {PicksBans} from './mapParts/PickBan'
-class MapRequest implements SideTeams, PicksBans {
+import Draft from './mapParts/Draft'
+import SideTeams from './mapParts/Sides'
+import PicksBans from './mapParts/PickBan'
+class MapRequest implements Draft, PicksBans, SideTeams {
     constructor(
         public winner: 'team1' | 'team2',
         public winner_side: 'blue' | 'red',
@@ -17,6 +18,16 @@ class MapRequest implements SideTeams, PicksBans {
         public red_mid_player: number,
         public red_dragon_player: number,
         public red_sup_player: number,
+        public blue_pick_1: number,
+        public blue_pick_2: number,
+        public blue_pick_3: number,
+        public blue_pick_4: number,
+        public blue_pick_5: number,
+        public red_pick_1: number,
+        public red_pick_2: number,
+        public red_pick_3: number,
+        public red_pick_4: number,
+        public red_pick_5: number,
         public blue_baron_pick: number,
         public blue_jungle_pick: number,
         public blue_mid_pick: number,
@@ -27,16 +38,16 @@ class MapRequest implements SideTeams, PicksBans {
         public red_mid_pick: number,
         public red_dragon_pick: number,
         public red_sup_pick: number,
-        public blue_baron_ban?: number,
-        public blue_jungle_ban?: number,
-        public blue_mid_ban?: number,
-        public blue_dragon_ban?: number,
-        public blue_sup_ban?: number,
-        public red_baron_ban?: number,
-        public red_jungle_ban?: number,
-        public red_mid_ban?: number,
-        public red_dragon_ban?: number,
-        public red_sup_ban?: number,
+        public blue_ban_1?: number,
+        public blue_ban_2?: number,
+        public blue_ban_3?: number,
+        public blue_ban_4?: number,
+        public blue_ban_5?: number,
+        public red_ban_1?: number,
+        public red_ban_2?: number,
+        public red_ban_3?: number,
+        public red_ban_4?: number,
+        public red_ban_5?: number,
         public vod_link?: string,
         public id?: number,
     ) { }

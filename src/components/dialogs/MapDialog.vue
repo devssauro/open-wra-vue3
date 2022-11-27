@@ -13,10 +13,10 @@
         <v-window-item v-if="map.blue_side !== undefined && map.red_side !== undefined">
           <PicksBans :map="map" :teams="teamsInfo" :champions="champions" />
         </v-window-item>
-        <!-- <v-window-item>
-          <draft :map="map" :teams="teamsInfo" :champions="champions"/>
+        <v-window-item v-if="map.blue_side !== undefined && map.red_side !== undefined">
+          <Draft :map="map" :teams="teamsInfo" :champions="champions"/>
         </v-window-item>
-        <v-window-item>
+        <!-- <v-window-item>
           <objectives :map="map" :teams="teamsInfo" />
         </v-window-item>
         <v-window-item>
@@ -34,12 +34,14 @@ import MapRequest from '@/types/MapRequest'
 import TeamsInfo from '@/types/TeamsInfo'
 import TeamSide from '@/components/mapInfo/TeamSide.vue'
 import PicksBans from '@/components/mapInfo/PicksBans.vue'
+import Draft from '@/components/mapInfo/Draft.vue'
 
 export default defineComponent({
   name: 'MapDialog',
   components: {
     PicksBans,
-    TeamSide
+    TeamSide,
+    Draft
   },
   props: {
     matchupId: {

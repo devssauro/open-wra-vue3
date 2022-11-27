@@ -12,3 +12,5 @@ export interface SideTeams {
     red_dragon_player: number
     red_sup_player: number
 }
+
+export default SideTeams
