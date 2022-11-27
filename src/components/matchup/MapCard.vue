@@ -1,37 +1,14 @@
 <template>
-  <v-menu v-model="showMenu" absolute offset-y v-if="isOperationalUser">
-    <template v-slot:activator="{ on, attrs }">
-      <v-card :color="`${map.winner_side} darken-3`" v-bind="attrs" v-on="on">
-        <v-card-title>
-          <v-row>
-            <v-col cols="6">
-              {{matchup[map.winner].tag}}
-            </v-col>
-            <v-col cols="6">
-              {{map.length}}
-            </v-col>
-          </v-row>
-        </v-card-title>
-      </v-card>
-    </template>
-    <v-list>
-      <v-list-item @click="viewMap(matchup.id, map.id)">
-        <v-list-item-title>Visualizar jogo</v-list-item-title>
-      </v-list-item>
-      <v-list-item @click="openVod">
-        <v-list-item-title>Abrir VOD</v-list-item-title>
-      </v-list-item>
-      <v-divider />
-      <v-list-item @click="editMap(matchup.id, map.id)"> 
-        <v-list-item-title>Editar</v-list-item-title>
-      </v-list-item>
-    </v-list>
-  </v-menu>
-  <v-card @click="openVod" :color="`${map.winner_side} darken-3`" v-else>
+  <v-card @click="openVod" :color="`${map.winner_side} darken-3`">
     <v-card-title>
-      {{matchup[map.winner].tag}}
-      <v-spacer />
-      {{map.length}}
+      <v-row>
+        <v-col cols="6">
+          {{matchup[map.winner].tag}}
+        </v-col>
+        <v-col cols="6">
+          {{map.length}}
+        </v-col>
+      </v-row>
     </v-card-title>
   </v-card>
 </template>

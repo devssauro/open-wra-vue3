@@ -1,0 +1,45 @@
+import {SideTeams} from './mapParts/Sides'
+import {PicksBans} from './mapParts/PickBan'
+class MapRequest implements SideTeams, PicksBans {
+    constructor(
+        public winner: 'team1' | 'team2',
+        public winner_side: 'blue' | 'red',
+        public length: string,
+        public blue_side: number,
+        public red_side: number,
+        public blue_baron_player: number,
+        public blue_jungle_player: number,
+        public blue_mid_player: number,
+        public blue_dragon_player: number,
+        public blue_sup_player: number,
+        public red_baron_player: number,
+        public red_jungle_player: number,
+        public red_mid_player: number,
+        public red_dragon_player: number,
+        public red_sup_player: number,
+        public blue_baron_pick: number,
+        public blue_jungle_pick: number,
+        public blue_mid_pick: number,
+        public blue_dragon_pick: number,
+        public blue_sup_pick: number,
+        public red_baron_pick: number,
+        public red_jungle_pick: number,
+        public red_mid_pick: number,
+        public red_dragon_pick: number,
+        public red_sup_pick: number,
+        public blue_baron_ban?: number,
+        public blue_jungle_ban?: number,
+        public blue_mid_ban?: number,
+        public blue_dragon_ban?: number,
+        public blue_sup_ban?: number,
+        public red_baron_ban?: number,
+        public red_jungle_ban?: number,
+        public red_mid_ban?: number,
+        public red_dragon_ban?: number,
+        public red_sup_ban?: number,
+        public vod_link?: string,
+        public id?: number,
+    ) { }
+}
+
+export default MapRequest

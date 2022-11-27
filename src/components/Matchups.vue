@@ -15,22 +15,27 @@
         </v-sheet>
       </v-col>
       <v-col>
-        <AllMatchups :matchups="matchups" />
+        <AllMatchups :matchups="matchups" @newMap="newMap" />
       </v-col>
     </v-row>
+    <v-dialog fullscreen v-model="mapDialog">
+      <mapDialog v-if="mapDialog" @saved="closeMapDialog" :matchupId="selectedMatchup" :mapId="selectedMap" />
+    </v-dialog>
   </v-container>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, ref, ref, ref, ref } from 'vue'
 import moment from  'moment'
 import Tournament from '@/types/Tournament'
 import AllMatchups from '@/components/matchup/AllMatchups.vue'
+import MapDialog from '@/components/dialogs/MapDialog.vue'
 
 export default defineComponent({
   name: 'Matchup',
   components: {
-    AllMatchups
+    AllMatchups,
+    MapDialog,
   },
   watch: {
     selectedTournaments: function (t) {
@@ -50,27 +55,40 @@ export default defineComponent({
         return false;
     })
     const selectedTournaments = ref<number | number[]>(8)
-    const tournaments = ref<Tournament>();
+    const tournaments = ref<Tournament>()
     const matchupDialog = ref(false)
     const matchups = ref([])
-    const selectedMatchup = ref<Number>(8)
+    const selectedMatchup = ref<Number>()
+    const mapDialog = ref<boolean>(false)
+    const selectedMap = ref<number | null>(null)
+    const snackText = ref<string>('')
+    const snackbar = ref<boolean>(false)
 
     return {
       isOperationalUser, 
+      mapDialog,
       matchupDialog,
       matchups,
+      selectedMap,
       selectedMatchup,
       selectedTournaments,
+      snackbar,
+      snackText,
       tournaments, 
     }
   },
   methods: {
+    newMap(matchupId: number) {
+      this.selectedMatchup = matchupId
+      this.selectedMap = null
+      this.mapDialog = true
+    },
     newMatchup(matchupId: number) {
-      this.selectedMatchup = matchupId;
-      this.matchupDialog = true;
+      this.selectedMatchup = matchupId
+      this.matchupDialog = true
     },
     getMatchups(tournaments: number | number[]) {
-      let params = new URLSearchParams();
+      let params = new URLSearchParams()
       if (Array.isArray(tournaments))
         for (const t in tournaments) {
           params.append('t', tournaments[t].toString());
@@ -92,15 +110,21 @@ export default defineComponent({
       this.$axios.get('v1/tournament').then(res => {
         this.tournaments = res.data.tournaments.map(m => {
           // m.datetime = moment(`${m.datetime}`).format('DD/MM/YYYY HH:mm');
-          return m;
-        });
-        this.selectedTournaments = 8;
-        this.getMatchups(this.selectedTournaments);
-      });
+          return m
+        })
+        this.selectedTournaments = 8
+        this.getMatchups(this.selectedTournaments)
+      })
     },
     goTo(path: string) {
-      this.$router.push(path);
+      this.$router.push(path)
     },
+    closeMapDialog() {
+      this.getMatchups(this.selectedTournaments);
+      this.mapDialog = false;
+      this.snackText = 'Novo mapa criado';
+      this.snackbar = true;
+    }
   }
 });
 </script>
