@@ -8,24 +8,19 @@
       <v-container class="fill-height d-flex align-center">
         <v-menu>
           <template v-slot:activator="{ props }">
-            <v-btn
-              v-bind="props">
+            <v-btn v-bind="props">
               Relatórios
             </v-btn>
           </template>
           <v-list>
-            <v-list-item
-              v-for="(item, index) in items"
-              :key="index"
-              :value="index"
-            >
+            <v-list-item @click="goTo()" v-for="(item, index) in items" :key="index" :value="index">
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
 
         <template v-for="link in links" :key="link">
-          <v-btn variant="text" v-if="link.toShow">
+          <v-btn variant="text" v-if="link.toShow" @click="goTo()">
             {{ link.title }}
           </v-btn>
         </template>
