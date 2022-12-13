@@ -91,10 +91,10 @@ export default defineComponent({
       let params = new URLSearchParams()
       if (Array.isArray(tournaments))
         for (const t in tournaments) {
-          params.append('t', tournaments[t].toString());
+          params.append('tournament', tournaments[t].toString());
         }
       else {
-        params = {t: tournaments}
+        params = {tournament: tournaments}
       }
       this.$axios.get('v1/matchup', {'params': params}).then(res => {
         this.matchups = res.data.matchups.map(m => {

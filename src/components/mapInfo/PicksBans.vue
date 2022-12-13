@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    {{map}}
+    <!-- {{map}} -->
     <v-row>
       <v-col cols="6">
         <v-card class="bg-blue-darken-4" variant="outlined">
@@ -120,7 +120,7 @@ import Champion from '@/types/Champion'
 import ChampionField from '@/components/mapInfo/ChampionField.vue'
 
 export default defineComponent({
-  name: 'AllMatchups',
+  name: 'PicksBans',
   components: {
     ChampionField
   },

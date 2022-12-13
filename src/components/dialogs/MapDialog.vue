@@ -16,12 +16,12 @@
         <v-window-item v-if="map.blue_side !== undefined && map.red_side !== undefined">
           <Draft :map="map" :teams="teamsInfo" :champions="champions"/>
         </v-window-item>
-        <!-- <v-window-item>
-          <objectives :map="map" :teams="teamsInfo" />
+        <v-window-item v-if="map.blue_side !== undefined && map.red_side !== undefined">
+          <Objectives :map="map" :teams="teamsInfo" />
         </v-window-item>
-        <v-window-item>
-          <final-stats @save="save" :map="map" :teams="teamsInfo" :champions="champions" />
-        </v-window-item> -->
+        <v-window-item v-if="map.blue_side !== undefined && map.red_side !== undefined">
+          <FinalStats @save="save" :map="map" :teams="teamsInfo" :champions="champions" />
+        </v-window-item>
       </v-window>
     </v-container>
   </v-card>
@@ -35,13 +35,17 @@ import TeamsInfo from '@/types/TeamsInfo'
 import TeamSide from '@/components/mapInfo/TeamSide.vue'
 import PicksBans from '@/components/mapInfo/PicksBans.vue'
 import Draft from '@/components/mapInfo/Draft.vue'
+import Objectives from '@/components/mapInfo/Objectives.vue'
+import FinalStats from '@/components/mapInfo/FinalStats.vue'
 
 export default defineComponent({
   name: 'MapDialog',
   components: {
     PicksBans,
     TeamSide,
-    Draft
+    Draft,
+    Objectives,
+    FinalStats,
   },
   props: {
     matchupId: {
@@ -107,14 +111,14 @@ export default defineComponent({
         this.isLoading = false;
       });
     },
-    save(signal) {
+    save(signal: string) {
       // console.log('MapDialog');
       if (this.mapId !== null && this.mapId !== undefined) 
-        this.$axios.put(`v1/matchup/${this.matchup}/map/${this.mapId}/edit`, this.map).then(res => {
+        this.$axios.put(`v1/matchup/${this.matchupId}/map/${this.mapId}/edit`, this.map).then(res => {
           this.$emit('saved', true);
         });
       else
-        this.$axios.post(`v1/matchup/${this.matchup}/map`, this.map).then(res => {
+        this.$axios.post(`v1/matchup/${this.matchupId}/map`, this.map).then(res => {
           this.$emit('saved', true);
         });
     }

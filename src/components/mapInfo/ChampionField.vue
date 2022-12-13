@@ -14,13 +14,11 @@
 <script lang="ts">
 import { computed, defineComponent, PropType, ref } from 'vue'
 import MapRequest from '@/types/MapRequest'
-import TeamsInfo from '@/types/TeamsInfo'
 import Team from '@/types/Team'
-import Player from '@/types/Player'
 import Champion from '@/types/Champion'
 
 export default defineComponent({
-  name: 'AllMatchups',
+  name: 'ChampionField',
   props: {
     map: {
       type: Object as PropType<MapRequest>,

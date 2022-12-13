@@ -3,7 +3,7 @@
     <!-- {{map}} -->
     <v-row>
       <v-col cols="4" offset="2">
-        <v-card color="blue" dark outlined>
+        <v-card class="bg-blue-darken-4" dark variant="outlined">
            <v-card-title style="display: flex; justify-content: center">
             {{[teams.team1, teams.team2].filter(t => t.id === map.blue_side)[0].name}}
           </v-card-title>
@@ -30,7 +30,7 @@
         </v-card>
       </v-col>
       <v-col cols="4">
-        <v-card color="red" dark outlined>
+        <v-card class="bg-red-darken-4" dark variant="outlined">
           <v-card-title style="display: flex; justify-content: center">
             {{[teams.team1, teams.team2].filter(t => t.id === map.red_side)[0].name}}
           </v-card-title>
@@ -70,7 +70,7 @@ import Champion from '@/types/Champion'
 import ChampionField from '@/components/mapInfo/ChampionField.vue'
 
 export default defineComponent({
-  name: 'AllMatchups',
+  name: 'Draft',
   components: {
     ChampionField
   },
